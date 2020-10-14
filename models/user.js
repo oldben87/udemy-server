@@ -32,7 +32,7 @@ userSchema.pre('save', function (next) {
 })
 
 //compare submitted password with database
-userSchema.methods.comparePassword = (candidatePassword, callback) => {
+userSchema.methods.comparePassword = function (candidatePassword, callback) {
   console.log(`candidate: ${candidatePassword}`)
   console.log(`user.modelpassword: ${this.password}`)
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
