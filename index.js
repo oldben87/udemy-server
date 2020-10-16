@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const router = require('./router')
 const config = require('./.env/config')
+const cors = require('cors')
 
 // Database Setup
 const mongoUri = `mongodb+srv://admin1:${config.mongo_pw}@cluster0.jrrh7.gcp.mongodb.net/udemyTest?retryWrites=true&w=majority`
@@ -12,6 +13,7 @@ mongoose.connect(mongoUri).catch((err) => console.log(err))
 
 // App Setup -> express to external
 const app = express()
+app.use(cors())
 app.use(morgan('combined')) // logging framework
 app.use(bodyParser.json({ type: '*/*' }))
 router(app)
